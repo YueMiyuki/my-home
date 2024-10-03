@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
       },
     ],
 
-    sitemap: 'https://nexus.mdesk.tech/sitemap.xml',
+    sitemap: 'https://miyuki-yue.dev/sitemap.xml',
   };
 }
