@@ -3,6 +3,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from '@vercel/analytics/react';
 import localFont from "next/font/local";
 import "./globals.css";
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -32,6 +33,7 @@ export default function RootLayout({
       >
         {children}
         <SpeedInsights />
+        <GoogleAnalytics gaId="G-3LTSW62JCW" />
         <Analytics />
       </body>
     </html>
