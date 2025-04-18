@@ -1,16 +1,16 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { useInView } from "react-intersection-observer"
-import { Card, CardContent } from "@/components/ui/card"
-import { Mail, MapPin } from "lucide-react"
-import Link from "next/link"
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { Card, CardContent } from "@/components/ui/card";
+import { Mail, MapPin } from "lucide-react";
+import Link from "next/link";
 
 export function Contact() {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
-  })
+  });
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -20,12 +20,12 @@ export function Contact() {
         staggerChildren: 0.2,
       },
     },
-  }
+  };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-  }
+  };
 
   return (
     <section id="contact" className="w-full py-20 px-4">
@@ -38,7 +38,9 @@ export function Contact() {
           className="space-y-12"
         >
           <motion.div variants={itemVariants} className="text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Get In Touch
+            </h2>
             <div className="w-20 h-1 bg-primary mx-auto mb-8"></div>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Have a question or want to work together? Feel free to reach out!
@@ -56,14 +58,16 @@ export function Contact() {
 
                     <div className="space-y-2">
                       <h3 className="text-xl font-bold">Find Me</h3>
-                      <p className="text-muted-foreground">The best way to reach me is through Discord!</p>
+                      <p className="text-muted-foreground">
+                        The best way to reach me is through Discord!
+                      </p>
                       <Link
                         href="https://discord.com/channels/@me"
                         target="_blank"
                         className="text-primary"
-                      > 
-                       miyuki.yue_3747
-                       </Link>
+                      >
+                        miyuki.yue_3747
+                      </Link>
                     </div>
 
                     <div className="w-full pt-6 border-t border-border flex items-center justify-center">
@@ -80,5 +84,5 @@ export function Contact() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

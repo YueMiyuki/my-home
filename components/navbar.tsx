@@ -1,37 +1,37 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import { ModeToggle } from "@/components/mode-toggle"
-import { cn } from "@/lib/utils"
-import { motion } from "framer-motion"
-import { Menu, X } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { ModeToggle } from "@/components/mode-toggle";
+import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
+import { Menu, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   const navLinks = [
     { href: "#about", label: "About" },
     { href: "#projects", label: "Projects" },
     { href: "#contact", label: "Contact" },
-  ]
+  ];
 
   const navbarVariants = {
     hidden: { opacity: 0, y: -20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-  }
+  };
 
   const linkVariants = {
     hidden: { opacity: 0, y: -10 },
@@ -43,7 +43,7 @@ export function Navbar() {
         duration: 0.5,
       },
     }),
-  }
+  };
 
   return (
     <motion.header
@@ -52,12 +52,18 @@ export function Navbar() {
       variants={navbarVariants}
       className={cn(
         "fixed top-0 w-full z-50 transition-all duration-300 px-4 md:px-8",
-        isScrolled ? "bg-background/80 backdrop-blur-md py-2 shadow-md" : "py-4",
+        isScrolled
+          ? "bg-background/80 backdrop-blur-md py-2 shadow-md"
+          : "py-4",
       )}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link href="/">
-          <motion.div className="font-mono text-xl font-bold" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+          <motion.div
+            className="font-mono text-xl font-bold"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
             <span className="text-primary">{"<"}</span>
             <span>Miyuki</span>
             <span className="text-primary">{"/>"}</span>
@@ -74,7 +80,10 @@ export function Navbar() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Link href={link.href} className="text-muted-foreground hover:text-foreground transition-colors">
+              <Link
+                href={link.href}
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
                 {link.label}
               </Link>
             </motion.div>
@@ -87,7 +96,12 @@ export function Navbar() {
         {/* Mobile Navigation Toggle */}
         <div className="flex items-center md:hidden">
           <ModeToggle />
-          <Button variant="ghost" size="icon" onClick={toggleMenu} className="ml-2">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleMenu}
+            className="ml-2"
+          >
             {isMenuOpen ? <X /> : <Menu />}
           </Button>
         </div>
@@ -116,5 +130,5 @@ export function Navbar() {
         </motion.div>
       )}
     </motion.header>
-  )
+  );
 }

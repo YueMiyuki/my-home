@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import Link from "next/link"
-import { Github, Mail, Globe } from "lucide-react"
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { Github, Mail, Globe } from "lucide-react";
 
 export function Footer() {
-  const currentYear = new Date().getFullYear()
+  const currentYear = new Date().getFullYear();
 
   return (
     <footer className="w-full py-8 px-4 border-t border-border">
@@ -70,5 +70,5 @@ export function Footer() {
         </motion.div>
       </div>
     </footer>
-  )
+  );
 }

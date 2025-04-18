@@ -1,58 +1,58 @@
-"use client"
+"use client";
 
-import { motion, AnimatePresence } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { ArrowRight, Github } from "lucide-react"
-import Link from "next/link"
-import { TypeAnimation } from "react-type-animation"
-import { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Github } from "lucide-react";
+import Link from "next/link";
+import { TypeAnimation } from "react-type-animation";
+import { useState } from "react";
 
 export function Hero() {
-  const [redDotClicks, setRedDotClicks] = useState(0)
-  const [showMessage, setShowMessage] = useState(false)
-  const [vibrate, setVibrate] = useState(false)
+  const [redDotClicks, setRedDotClicks] = useState(0);
+  const [showMessage, setShowMessage] = useState(false);
+  const [vibrate, setVibrate] = useState(false);
 
   const handleRedDotClick = () => {
     // This is fun lmao
-    setRedDotClicks((prev) => prev + 1)
-    setShowMessage(true)
+    setRedDotClicks((prev) => prev + 1);
+    setShowMessage(true);
 
     if (redDotClicks === 1) {
-      setVibrate(true)
-      setTimeout(() => setVibrate(false), 500)
+      setVibrate(true);
+      setTimeout(() => setVibrate(false), 500);
     }
 
-    setTimeout(() => setShowMessage(false), 2000)
+    setTimeout(() => setShowMessage(false), 2000);
 
     if (redDotClicks === 4) {
       setTimeout(() => {
-        window.close()
-        window.location.href = "about:blank"
-      }, 1500)
+        window.close();
+        window.location.href = "about:blank";
+      }, 1500);
     }
-  }
+  };
 
   // Get message based on click count
   const getMessage = () => {
     switch (redDotClicks) {
       case 1:
-        return "Nah, that's not gonna work"
+        return "Nah, that's not gonna work";
       case 2:
-        return "Stop, that's not gonna work!"
+        return "Stop, that's not gonna work!";
       case 3:
-        return "I said that won't work"
+        return "I said that won't work";
       case 4:
-        return "Fine..."
+        return "Fine...";
       case 5:
-        return "Oof"
+        return "Oof";
       default:
-        return "What are you doing?"
+        return "What are you doing?";
     }
-  }
-  
+  };
+
   const getMessageColor = () => {
-    return redDotClicks === 3 ? "text-red-500" : "text-foreground"
-  }
+    return redDotClicks === 3 ? "text-red-500" : "text-foreground";
+  };
 
   return (
     <section className="w-full min-h-screen flex flex-col items-center justify-center px-4 pt-20">
@@ -70,7 +70,8 @@ export function Hero() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.8 }}
             >
-              Hey there! I&apos;m <span className="text-primary">Miyuki</span> ✨
+              Hey there! I&apos;m <span className="text-primary">Miyuki</span>{" "}
+              ✨
             </motion.h1>
             <motion.div
               initial={{ opacity: 0 }}
@@ -110,8 +111,9 @@ export function Hero() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6, duration: 0.8 }}
           >
-            Just a dev who loves creating cool web stuff and helping others get their projects online. When I'm not
-            coding, you'll find me exploring new tech or gaming!
+            Just a dev who loves creating cool web stuff and helping others get
+            their projects online. When I&apos;m not coding, you&apos;ll find me
+            exploring new tech or gaming!
           </motion.p>
 
           <motion.div
@@ -126,7 +128,11 @@ export function Hero() {
               </Link>
             </Button>
             <Button variant="outline" size="lg" asChild>
-              <Link href="https://github.com/YueMiyuki" target="_blank" rel="noopener noreferrer">
+              <Link
+                href="https://github.com/YueMiyuki"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Github className="mr-2 h-4 w-4" /> Say Reeeeee on GitHub
               </Link>
             </Button>
@@ -175,7 +181,11 @@ export function Hero() {
                       initial={{ opacity: 0, y: -10, scale: 0.8 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.8, y: -10 }}
-                      transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 500,
+                        damping: 30,
+                      }}
                     >
                       {getMessage()}
                     </motion.div>
@@ -195,7 +205,9 @@ export function Hero() {
                 <div className="flex">
                   <span className="text-muted-foreground mr-4">2</span>
                   <span className="text-foreground ml-4">name:</span>
-                  <span className="text-green-400 mx-2">'Just call me Miyuki!'</span>
+                  <span className="text-green-400 mx-2">
+                    &apos;Just call me Miyuki!&apos;
+                  </span>
                   <span className="text-foreground">,</span>
                 </div>
                 <div className="flex">
@@ -205,22 +217,28 @@ export function Hero() {
                 </div>
                 <div className="flex">
                   <span className="text-muted-foreground mr-4">4</span>
-                  <span className="text-green-400 ml-8">'Nerdy'</span>
+                  <span className="text-green-400 ml-8">&apos;Nerdy&apos;</span>
                   <span className="text-foreground">,</span>
                 </div>
                 <div className="flex">
                   <span className="text-muted-foreground mr-4">5</span>
-                  <span className="text-green-400 ml-8">'JS/TS guy'</span>
+                  <span className="text-green-400 ml-8">
+                    &apos;JS/TS guy&apos;
+                  </span>
                   <span className="text-foreground">,</span>
                 </div>
                 <div className="flex">
                   <span className="text-muted-foreground mr-4">6</span>
-                  <span className="text-green-400 ml-8">'Do some React'</span>
+                  <span className="text-green-400 ml-8">
+                    &apos;Do some React&apos;
+                  </span>
                   <span className="text-foreground">,</span>
                 </div>
                 <div className="flex">
                   <span className="text-muted-foreground mr-4">7</span>
-                  <span className="text-green-400 ml-8">'Maybe also some Next.JS'</span>
+                  <span className="text-green-400 ml-8">
+                    &apos;Maybe also some Next.JS&apos;
+                  </span>
                 </div>
                 <div className="flex">
                   <span className="text-muted-foreground mr-4">8</span>
@@ -230,16 +248,20 @@ export function Hero() {
                 <div className="flex">
                   <span className="text-muted-foreground mr-4">9</span>
                   <span className="text-foreground ml-4">currentLocation:</span>
-                  <span className="text-green-400 mx-2">'Somewhere in HK 🌃'</span>
+                  <span className="text-green-400 mx-2">
+                    &apos;Somewhere in HK 🌃&apos;
+                  </span>
                   <span className="text-foreground">,</span>
                 </div>
                 <div className="flex">
                   <span className="text-muted-foreground mr-4">10</span>
                   <span className="text-foreground ml-4">funStuff:</span>
                   <span className="text-foreground mx-2">[</span>
-                  <span className="text-green-400">'ward-next'</span>
+                  <span className="text-green-400">&apos;ward-next&apos;</span>
                   <span className="text-foreground">,</span>
-                  <span className="text-green-400 ml-2">'fas-rs'</span>
+                  <span className="text-green-400 ml-2">
+                    &apos;fas-rs&apos;
+                  </span>
                   <span className="text-foreground">]</span>
                 </div>
                 <div className="flex">
@@ -251,7 +273,11 @@ export function Hero() {
                   <motion.span
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ repeat: Number.POSITIVE_INFINITY, duration: 0.8, repeatType: "reverse" }}
+                    transition={{
+                      repeat: Number.POSITIVE_INFINITY,
+                      duration: 0.8,
+                      repeatType: "reverse",
+                    }}
                     className="w-3 h-5 bg-primary/70"
                   />
                 </div>
@@ -268,5 +294,5 @@ export function Hero() {
         className="fixed bottom-10 left-1/2 -translate-x-1/2 z-10"
       ></motion.div>
     </section>
-  )
+  );
 }
