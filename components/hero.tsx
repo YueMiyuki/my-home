@@ -249,7 +249,7 @@ export function Hero() {
                   <span className="text-muted-foreground mr-4">9</span>
                   <span className="text-foreground ml-4">currentLocation:</span>
                   <span className="text-green-400 mx-2">
-                    &apos;Somewhere in HK 🌃&apos;
+                    &apos;Somewhere in HK&apos;
                   </span>
                   <span className="text-foreground">,</span>
                 </div>
