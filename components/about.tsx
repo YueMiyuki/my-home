@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { useInView } from "react-intersection-observer";
 import { Code2, Rocket, Zap, Coffee, Gamepad2, Server } from "lucide-react";
 import { CardSpotlight } from "@/components/ui/card-spotlight";
