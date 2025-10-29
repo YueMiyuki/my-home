@@ -16,6 +16,35 @@ export function Particles() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { theme } = useTheme();
 
+  const drawConnections = useCallback(
+    (
+      ctx: CanvasRenderingContext2D,
+      particles: Particle[],
+      maxDistance: number,
+      isDark: boolean,
+    ) => {
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < maxDistance) {
+            const opacity = (1 - distance / maxDistance) * 0.2;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = isDark
+              ? `rgba(255, 255, 255, ${opacity})`
+              : `rgba(0, 0, 0, ${opacity})`;
+            ctx.stroke();
+          }
+        }
+      }
+    },
+    [],
+  );
+
   const createParticles = useCallback(
     (count: number, canvas: HTMLCanvasElement): Particle[] => {
       const particles: Particle[] = [];
@@ -68,34 +97,8 @@ export function Particles() {
       // Draw connections
       drawConnections(ctx, particles, 100, isDark);
     },
-    [],
+    [drawConnections],
   );
-
-  const drawConnections = (
-    ctx: CanvasRenderingContext2D,
-    particles: Particle[],
-    maxDistance: number,
-    isDark: boolean,
-  ) => {
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x;
-        const dy = particles[i].y - particles[j].y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-
-        if (distance < maxDistance) {
-          const opacity = (1 - distance / maxDistance) * 0.2;
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = isDark
-            ? `rgba(255, 255, 255, ${opacity})`
-            : `rgba(0, 0, 0, ${opacity})`;
-          ctx.stroke();
-        }
-      }
-    }
-  };
 
   useEffect(() => {
     const canvas = canvasRef.current;

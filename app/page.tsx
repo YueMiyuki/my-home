@@ -1,3 +1,5 @@
+"use cache";
+
 import { Hero } from "@/components/hero";
 import { Navbar } from "@/components/navbar";
 import { About } from "@/components/about";
@@ -13,6 +15,7 @@ export default async function Home() {
     fetchLanguageStats(),
     fetchPinnedProjects(),
   ]);
+  const currentYear = new Date().getFullYear();
 
   return (
     <main className="flex min-h-screen flex-col items-center">
@@ -24,7 +27,7 @@ export default async function Home() {
       <About languages={languages} />
       <Projects pinnedProjects={pinnedProjects} />
       <Contact />
-      <Footer />
+      <Footer initialYear={currentYear} />
     </main>
   );
 }

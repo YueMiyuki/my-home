@@ -1,11 +1,19 @@
 "use client";
 
+import { useMemo } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Github, Mail, Globe } from "lucide-react";
 
-export function Footer() {
-  const currentYear = new Date().getFullYear();
+type FooterProps = {
+  initialYear: number;
+};
+
+export function Footer({ initialYear }: FooterProps) {
+  const currentYear = useMemo(() => {
+    const now = new Date().getFullYear();
+    return now > initialYear ? now : initialYear;
+  }, [initialYear]);
 
   return (
     <footer className="w-full py-8 px-4 border-t border-border">

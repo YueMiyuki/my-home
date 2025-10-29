@@ -3,17 +3,11 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Github } from "lucide-react";
+import { Github, Star, GitFork, ArrowRight } from "lucide-react";
+
 import Link from "next/link";
+import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
 
 interface Project {
   author: string;
@@ -34,94 +28,167 @@ export function Projects({ pinnedProjects }: ProjectsProps) {
     threshold: 0.1,
   });
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-  };
-
   return (
-    <section id="projects" className="w-full py-20 px-4">
-      <div className="max-w-5xl mx-auto">
+    <section
+      id="projects"
+      className="relative w-full py-32 px-4 overflow-hidden"
+    >
+      <div className="absolute inset-0">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
+        <div
+          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"
+          style={{ animationDelay: "1s" }}
+        />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto">
         <motion.div
           ref={ref}
-          variants={containerVariants}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          className="space-y-12"
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.8 }}
+          className="space-y-16"
         >
-          <motion.div variants={itemVariants} className="text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Things that I have contributed
-            </h2>
-            <div className="w-20 h-1 bg-primary mx-auto mb-8"></div>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Here are some of my pinned projects from GitHub.
-            </p>
-          </motion.div>
+          <div className="text-center space-y-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-4xl md:text-6xl font-bold">
+                Cool Stuff I&apos;ve{" "}
+                <span className="text-gradient-blue">Built</span>
+              </h2>
+              <motion.div
+                initial={{ width: 0 }}
+                animate={inView ? { width: "100px" } : { width: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="h-1 bg-linear-to-r from-blue-500 to-cyan-500 mx-auto mt-4 rounded-full"
+              />
+            </motion.div>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
+            >
+              Some of my favorite open-source projects and side hustles
+            </motion.p>
+          </div>
 
           <motion.div
-            variants={containerVariants}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+            initial={{ opacity: 0, y: 40 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-6 justify-items-center"
           >
-            {pinnedProjects.map((project) => (
+            {pinnedProjects.map((project, index) => (
               <motion.div
                 key={project.name}
-                variants={itemVariants}
-                whileHover={{ y: -10 }}
-                className="h-full"
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
+                className="flex w-full justify-center"
               >
-                <Card className="h-full flex flex-col overflow-hidden border border-border">
-                  <CardHeader>
-                    <CardTitle>{project.name}</CardTitle>
-                    <CardDescription className="line-clamp-2">
-                      {project.description || "A cool project"}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="flex-grow">
-                    <div className="flex flex-wrap gap-2 mt-2">
-                      <Badge variant="secondary">{project.language}</Badge>
-                      {project.stars > 0 && (
-                        <Badge variant="outline">⭐ {project.stars}</Badge>
-                      )}
-                      {project.forks > 0 && (
-                        <Badge variant="outline">🍴 {project.forks}</Badge>
-                      )}
-                    </div>
-                  </CardContent>
-                  <CardFooter className="flex gap-2">
-                    <Button variant="outline" size="sm" asChild>
-                      <Link
+                <CardContainer
+                  className="w-full md:w-auto bg-gray-800 rounded-4xl"
+                  containerClassName="w-full flex justify-center"
+                >
+                  <CardBody className="bg-card relative group/card dark:hover:shadow-2xl dark:hover:shadow-blue-500/10 dark:bg-card w-full md:w-[560px] min-h-[420px] rounded-xl p-8 flex flex-col">
+                    <CardItem
+                      translateZ="50"
+                      className="text-2xl font-bold text-foreground"
+                    >
+                      {project.name}
+                    </CardItem>
+                    <CardItem
+                      as="p"
+                      translateZ="60"
+                      className="text-muted-foreground text-sm mt-2 grow overflow-auto"
+                    >
+                      {project.description ||
+                        "An awesome project that does cool things"}
+                    </CardItem>
+
+                    <CardItem translateZ="80" className="w-full mt-4">
+                      <div className="flex flex-wrap gap-3">
+                        <Badge
+                          variant="secondary"
+                          className="glass bg-blue-500/20 text-blue-400 border-blue-500/30"
+                        >
+                          {project.language}
+                        </Badge>
+                        {project.stars > 0 && (
+                          <Badge
+                            variant="outline"
+                            className="glass border-yellow-500/30"
+                          >
+                            <Star className="w-3 h-3 mr-1 fill-yellow-400 text-yellow-400" />
+                            {project.stars}
+                          </Badge>
+                        )}
+                        {project.forks > 0 && (
+                          <Badge
+                            variant="outline"
+                            className="glass border-blue-500/30"
+                          >
+                            <GitFork className="w-3 h-3 mr-1" />
+                            {project.forks}
+                          </Badge>
+                        )}
+                      </div>
+                    </CardItem>
+
+                    <div className="flex justify-between items-center mt-auto pt-4">
+                      <CardItem
+                        translateZ={20}
+                        as={Link}
                         href={`https://github.com/${project.author}/${project.name}`}
                         target="_blank"
-                        rel="noopener noreferrer"
+                        className="px-4 py-2 rounded-xl text-xs font-normal text-foreground hover:text-blue-400 transition-colors"
                       >
-                        <Github className="mr-2 h-4 w-4" /> View on GitHub
-                      </Link>
-                    </Button>
-                  </CardFooter>
-                </Card>
+                        View Code →
+                      </CardItem>
+                      <CardItem
+                        translateZ={20}
+                        as="button"
+                        className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-colors"
+                        onClick={() =>
+                          window.open(
+                            `https://github.com/${project.author}/${project.name}`,
+                            "_blank",
+                          )
+                        }
+                      >
+                        <Github className="inline w-3 h-3 mr-1" />
+                        Star
+                      </CardItem>
+                    </div>
+                  </CardBody>
+                </CardContainer>
               </motion.div>
             ))}
           </motion.div>
 
-          <motion.div variants={itemVariants} className="text-center">
-            <Button asChild size="lg">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+            className="text-center pt-8"
+          >
+            <Button
+              asChild
+              size="lg"
+              className="group bg-blue-600 hover:bg-blue-700 text-white"
+            >
               <Link
                 href="https://github.com/YueMiyuki"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Github className="mr-2 h-5 w-5" /> View More on GitHub
+                <Github className="mr-2 h-5 w-5" />
+                More on GitHub
+                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
           </motion.div>

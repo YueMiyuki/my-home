@@ -1,12 +1,14 @@
+"use cache";
+
 import type React from "react";
 import type { Metadata } from "next";
-import { Mona_Sans } from "next/font/google";
+import { Geist } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 
-const fontSans = Mona_Sans({
+const GeistFont = Geist({
   subsets: ["latin"],
   variable: "--font-sans",
 });
@@ -17,7 +19,7 @@ export const metadata: Metadata = {
     "Personal website of Miyuki Yue, a JS developer and student from Hong Kong",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -27,7 +29,7 @@ export default function RootLayout({
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable,
+          GeistFont.variable,
         )}
       >
         <ThemeProvider
