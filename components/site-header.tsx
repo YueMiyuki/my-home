@@ -24,6 +24,7 @@ export function SiteHeader() {
 			</HeaderName>
 			<HeaderNavigation aria-label="Site sections">
 				<HeaderMenuItem href="#about">About</HeaderMenuItem>
+				<HeaderMenuItem href="#model-card">Model card</HeaderMenuItem>
 				<HeaderMenuItem href="#stack">Stack</HeaderMenuItem>
 				<HeaderMenuItem href="#projects">Projects</HeaderMenuItem>
 				<HeaderMenuItem href="#contact">Contact</HeaderMenuItem>

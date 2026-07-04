@@ -1,6 +1,7 @@
 import { Hero } from "@/components/sections/hero";
 import { Marquee } from "@/components/sections/marquee";
 import { About } from "@/components/sections/about";
+import { ModelCard } from "@/components/sections/model-card";
 import { TechStack } from "@/components/sections/tech-stack";
 import { Projects } from "@/components/sections/projects";
 import { Contact } from "@/components/sections/contact";
@@ -13,6 +14,7 @@ export default function Page() {
 			<Hero />
 			<Marquee />
 			<About />
+			<ModelCard />
 			<TechStack />
 			<Projects />
 			<Contact />
